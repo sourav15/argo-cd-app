@@ -60,4 +60,4 @@ jobs:
           sed -i 's/user-dev-[0-9]\{1,\}/user-dev-${{ github.run_number }}/' user-deployment.yaml
           git add user-deployment.yaml
           git commit -m "Update image tag by Github Actions Job change manifest: ${{ github.run_number }}"
-          git push origin master
+          git push origin main
