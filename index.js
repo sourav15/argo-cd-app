@@ -5,7 +5,7 @@ const app = express();
 const route = express.Router();
 
 route.get("/user", (req, res) => {
-  res.status(200).send({ id: 4 });
+  res.status(200).send({ id: 12 });
 });
 
 app.use(route);
