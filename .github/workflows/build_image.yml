@@ -48,7 +48,7 @@ jobs:
       - name: Changing the deployment of git repo
         uses: actions/checkout@v4
         with:
-          repository: https://github.com/sourav15/argo-cd-manifest.git
+          repository: sourav15/argo-cd-manifest
           token: ${{ secrets.GIT_TOKEN }}
           ref: branch-to-pull
 
