@@ -40,3 +40,24 @@ jobs:
           context: .
           push: true
           tags: sourav15/user-dev-${{ github.run_number }}
+
+  modify_image:
+    needs: build_and_push_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Changing the deployment of git repo
+        uses: actions/checkout@v4
+        with:
+          repository: https://github.com/sourav15/argo-cd-manifest.git
+          token: ${{ secrets.GIT_TOKEN }}
+          ref: branch-to-pull
+
+      - name: modify the image
+        run: |
+          git config user.email ${{ secrets.EMAIL }}
+          git config user.name ${{ secrets.NAME }}
+          echo “Working Directory: $(pwd)”
+          sed -i 's/user-dev-[0-9]\{1,\}/user-dev-${{ github.run_number }}/' user-deployment.yaml
+          git add user-deployment.yaml
+          git commit -m "Update image tag by Github Actions Job change manifest: ${{ github.run_number }}"
+          git push origin master
