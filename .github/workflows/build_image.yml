@@ -50,7 +50,7 @@ jobs:
         with:
           repository: sourav15/argo-cd-manifest
           token: ${{ secrets.GIT_TOKEN }}
-          ref: branch-to-pull
+          ref: main
 
       - name: modify the image
         run: |
